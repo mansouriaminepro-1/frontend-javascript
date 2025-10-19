@@ -1,5 +1,5 @@
 export interface MajorCredits {
-  credits : number;
+  credits: number;
   brand : "MajorCredits";
 }
 
