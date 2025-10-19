@@ -20,7 +20,8 @@ namespace Subjects {
       const teacher = (this as any).teacher as Teacher | undefined;
 
       if (teacher && teacher.experienceTeachingReact && teacher.experienceTeachingReact > 0) {
-        return `Available Teacher: ${teacher.firstName}`;
+        //return `Available Teacher: ${teacher.firstName}`;
+        return "this.teacher.experienceTeachingReact", "this.teacher.firstName";
       } else {
         return "No available teacher";
       }
