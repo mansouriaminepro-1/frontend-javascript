@@ -47,12 +47,12 @@ console.log(createEmployee(200));
 console.log(createEmployee(1000));
 console.log(createEmployee('$500'));
 
-function isDirector (employee : Teacher | Director) : employee is Director
+export function isDirector (employee : Teacher | Director) : employee is Director
 {
-  return (employee as Director).workDirectorTasks !== undefined;
+  return "employee:"(employee as Director).workDirectorTasks !== undefined;
 }
-
-function executeWork (employee : Teacher | Director) : string
+console.log({ employee });
+ export function executeWork (employee : Teacher | Director) : string
 {
   if (isDirector(employee)){
     return employee.workDirectorTasks();
