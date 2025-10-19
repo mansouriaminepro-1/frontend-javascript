@@ -1,3 +1,4 @@
+
 /// <reference path="./Teacher.ts" />
 /// <reference path="./subject.ts" />
 
@@ -6,7 +7,7 @@ namespace Subjects {
         experienceTeachingJava?: number;
     }
     export class Java extends Subjects {
-        getRequirement(): string {
+       getRequirements(): string {
       return "Here is the list of requirements for Java";
     }
 
