@@ -1,82 +1,58 @@
-//Interface teacher
-interface Teacher {
-  readonly firstName: string; // only set at initialization
-  readonly lastName: string;  // only set at initialization
-  fullTimeEmployee: boolean;  // must always be defined
-  yearsOfExperience?: number; // optional
-  location: string;           // must always be defined
-  [key: string]: any;         // allow any extra attributes (like contract, subjects, etc.)
+// Define the Student interface
+interface Student {
+  firstName: string;
+  lastName: string;
+  age: number;
+  location: string;
 }
-//example for display
-const teacher1 : Teacher = {
-  firstName: "John",
-  lastName: "Doe",
-  fullTimeEmployee: true,
+
+// Create two students
+const student1: Student = {
+  firstName: "Alice",
+  lastName: "Johnson",
+  age: 20,
   location: "New York",
-  contract: false,  // additional property allowed
 };
 
-console.log(teacher1);
-
-// Interface directors that inherits from teacher
-interface Directors extends Teacher {
-    numberOfReports : number ;
-}
-//example
-const director1: Directors = {
-  firstName: 'John',
-  lastName: 'Doe',
-  location: 'London',
-  fullTimeEmployee: true,
-  numberOfReports: 17,
+const student2: Student = {
+  firstName: "Bob",
+  lastName: "Smith",
+  age: 22,
+  location: "Los Angeles",
 };
-console.log(director1);
 
-//interface printTeacherFunction
-interface printTeacherFunction {
-  (firstName: string, lastName: string): string;
-}
+// Store students in an array
+const studentsList: Student[] = [student1, student2];
 
-//function printTeacher that displays first letter of firstname and full lastname
-const printTeacher : printTeacherFunction = (FirstName : string , lastName : string) : string =>
- {
-  const firstInitial = FirstName.charAt(0).toUpperCase() ;
-  return '$firstInitial, $lastName';
- };
+// Create a table and append it to the body
+const table = document.createElement("table");
+const tableHeader = document.createElement("tr");
 
- //interface for the class
- interface StudentClassInterface {
-  workOnHomework(): string;
-  displayName(): string;
- }
+// Add headers
+const header1 = document.createElement("th");
+header1.textContent = "First Name";
+const header2 = document.createElement("th");
+header2.textContent = "Location";
 
- //interface for the constructor
- interface StudentClassConstructor {
-  new (firstName: string, lastName: string): StudentClassInterface;
-}
+tableHeader.appendChild(header1);
+tableHeader.appendChild(header2);
+table.appendChild(tableHeader);
 
-//class that implements the interface of the class
-class StudentClass implements StudentClassInterface {
-  private firstName : string ;
-  private lastName : string ;
+// Loop through students and create rows
+studentsList.forEach((student) => {
+  const row = document.createElement("tr");
 
-// constructor
-  constructor (firstName : string , lastName : string)
-  {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-// class methode 1
-  workOnHomework(): string {
-    return 'currently working';
-  }
+  const firstNameCell = document.createElement("td");
+  firstNameCell.textContent = student.firstName;
 
-  //class methode2
-  displayName(): string {
-    return this.firstName;
-  }
-}
-//example 
-const Student : StudentClassInterface = new StudentClass("John", "Doe");
-console.log(Student.displayName());
-console.log(Student.workOnHomework());
+  const locationCell = document.createElement("td");
+  locationCell.textContent = student.location;
+
+  row.appendChild(firstNameCell);
+  row.appendChild(locationCell);
+
+  table.appendChild(row);
+});
+
+// Append table to document body
+document.body.appendChild(table);
